@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Festzelt Musik – Deutsche Festzeltmusik hören</title>
+<meta name="description" content="Oktoberfest, Volksfest & Stimmungslieder – Deutsche Festzeltmusik von Festzelt Musik, einfach anklicken und mitfeiern.">
+<meta property="og:title" content="Festzelt Musik – Deutsche Festzeltmusik">
+<meta property="og:description" content="Oktoberfest, Volksfest & Stimmungslieder – einfach anklicken und mitfeiern.">
+<meta property="og:image" content="cover.jpg">
+<link rel="icon" href="icon.png">
+<style>
+  :root{
+    --blue:#1f5fae; --blue-dark:#163f75; --cream:#fbf5e8; --wood:#5a3a1e;
+    --gold:#d9a441; --ink:#2b1d10; --muted:#6b543c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;color:var(--ink);font-family:Georgia,"Times New Roman",serif;font-size:20px;line-height:1.5;
+    background:
+      repeating-conic-gradient(from 45deg,#e8f0fa 0 25%,#ffffff 0 50%) 0 0/56px 56px fixed;}
+  .wrap{max-width:1000px;margin:0 auto;padding:18px 16px 40px}
+  .hero{background:var(--cream);border:4px solid var(--wood);border-radius:22px;overflow:hidden;
+    box-shadow:0 8px 28px rgba(40,25,10,.18)}
+  .cover{display:block;width:100%;max-height:520px;object-fit:cover;object-position:center 40%}
+  .title{text-align:center;padding:18px 16px 8px}
+  h1{margin:0;font-size:2rem;color:var(--wood)}
+  .sub{margin:6px 0 0;color:var(--muted);font-size:1.05rem}
+  .player{padding:14px}
+  .frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;
+    border:3px solid var(--gold)}
+  .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .info{text-align:center;margin:12px 0 4px;color:var(--muted)}
+  .help{background:#fff;border:2px solid var(--blue);border-radius:16px;padding:16px 20px;margin-top:20px}
+  .help h2{margin:0 0 8px;font-size:1.2rem;color:var(--blue-dark)}
+  .help ol{margin:0;padding-left:1.3em}
+  .links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+  .btn{display:inline-block;text-decoration:none;font-size:1.1rem;padding:15px 24px;border-radius:14px;
+    background:#c4302b;color:#fff;font-weight:bold}
+  .btn.alt{background:var(--blue);color:#fff}
+  .btn:focus-visible{outline:5px solid var(--gold);outline-offset:3px}
+  footer{text-align:center;color:var(--muted);font-size:.9rem;margin-top:24px;
+    background:rgba(255,255,255,.85);border-radius:10px;padding:8px}
+  @media (max-width:600px){html,body{font-size:18px}h1{font-size:1.6rem}.btn{flex:1 1 100%;text-align:center}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <img class="cover" src="cover.jpg" alt="Festzelt Musik – Blaskapelle und Sängerin im Festzelt">
+    <div class="title">
+      <h1>🍻 Deutsche Festzeltmusik 🎺</h1>
+      <p class="sub">Oktoberfest, Volksfest &amp; Stimmungslieder – einfach anklicken und mitfeiern!</p>
+    </div>
+    <div class="player">
+      <div class="frame">
+        <iframe title="Festzelt Musik – Liederliste"
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=PLJANYFO31lFA&rel=0&loop=1&hl=de&cc_lang_pref=de"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p class="info">Die Lieder laufen nacheinander. Nach dem letzten Lied beginnt die Liste von vorn.</p>
+    </div>
+  </section>
+
+  <div class="help">
+    <h2>So geht's</h2>
+    <ol>
+      <li>Auf das große Abspielzeichen ▶ im Bild drücken.</li>
+      <li>Für großes Bild: das Viereck ⛶ unten rechts im Video drücken.</li>
+      <li>Zum nächsten Lied: den Pfeil ⏭ im Video drücken.</li>
+    </ol>
+  </div>
+
+  <div class="links">
+    <a class="btn" href="https://www.youtube.com/@FestzeltMusik?sub_confirmation=1" target="_blank" rel="noopener">🔔 Kanal abonnieren</a>
+    <a class="btn alt" href="https://www.youtube.com/playlist?list=PLJANYFO31lFA" target="_blank" rel="noopener">Liste auf YouTube öffnen</a>
+  </div>
+
+  <footer>© Festzelt Musik · Die Videos werden über YouTube abgespielt.</footer>
+</div>
+</body>
+</html>
