@@ -39,6 +39,20 @@
     background:#c4302b;color:#fff;font-weight:bold}
   .btn.alt{background:var(--blue);color:#fff}
   .btn:focus-visible{outline:5px solid var(--gold);outline-offset:3px}
+  .list{background:var(--cream);border:4px solid var(--wood);border-radius:22px;margin-top:20px;padding:16px}
+  .list h2{margin:0 0 12px;text-align:center;color:var(--wood);font-size:1.4rem}
+  .list ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .item{display:flex;align-items:center;gap:14px;width:100%;text-align:left;font:inherit;color:var(--ink);
+    background:#fff;border:2px solid #e3d3b8;border-radius:14px;padding:8px;cursor:pointer}
+  .item:hover{border-color:var(--gold)}
+  .item:focus-visible{outline:5px solid var(--gold);outline-offset:2px}
+  .item.on{border-color:var(--blue);background:#eaf2fc}
+  .item img{width:150px;aspect-ratio:16/9;object-fit:cover;border-radius:9px;flex:none;background:#ddd}
+  .item .nr{flex:none;width:2.2em;height:2.2em;border-radius:50%;background:var(--wood);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.9rem}
+  .item.on .nr{background:var(--blue)}
+  .item .t{font-size:1.05rem;line-height:1.35}
+  @media (max-width:600px){.item img{width:110px}.item .t{font-size:.95rem}.item .nr{display:none}}
   footer{text-align:center;color:var(--muted);font-size:.9rem;margin-top:24px;
     background:rgba(255,255,255,.85);border-radius:10px;padding:8px}
   @media (max-width:600px){html,body{font-size:18px}h1{font-size:1.6rem}.btn{flex:1 1 100%;text-align:center}}
@@ -54,7 +68,7 @@
     </div>
     <div class="player">
       <div class="frame">
-        <iframe title="Festzelt Musik – Liederliste"
+        <iframe id="yt" title="Festzelt Musik – Liederliste"
           src="https://www.youtube-nocookie.com/embed/videoseries?list=PLJANYFO31lFA&rel=0&loop=1&hl=de&cc_lang_pref=de"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -63,12 +77,17 @@
     </div>
   </section>
 
+  <section class="list" id="list" hidden>
+    <h2>🎶 Alle Lieder</h2>
+    <ol id="items"></ol>
+  </section>
+
   <div class="help">
     <h2>So geht's</h2>
     <ol>
       <li>Auf das große Abspielzeichen ▶ im Bild drücken.</li>
       <li>Für großes Bild: das Viereck ⛶ unten rechts im Video drücken.</li>
-      <li>Zum nächsten Lied: den Pfeil ⏭ im Video drücken.</li>
+      <li>Oder unten in der Liste einfach auf ein Lied drücken.</li>
     </ol>
   </div>
 
@@ -79,5 +98,31 @@
 
   <footer>© Festzelt Musik · Die Videos werden über YouTube abgespielt.</footer>
 </div>
+<script>
+(function(){
+  var LIST='PLJANYFO31lFA';
+  var yt=document.getElementById('yt'), box=document.getElementById('list'), ol=document.getElementById('items');
+  fetch('videos.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():[];}).then(function(v){
+    if(!v||!v.length) return;
+    v.forEach(function(x,i){
+      var li=document.createElement('li'), b=document.createElement('button');
+      b.className='item'; b.type='button';
+      var img=document.createElement('img'); img.loading='lazy'; img.alt='';
+      img.src='https://i.ytimg.com/vi/'+x.id+'/mqdefault.jpg';
+      var nr=document.createElement('span'); nr.className='nr'; nr.textContent=i+1;
+      var t=document.createElement('span'); t.className='t'; t.textContent=x.title;
+      b.appendChild(nr); b.appendChild(img); b.appendChild(t);
+      b.addEventListener('click',function(){
+        [].forEach.call(ol.querySelectorAll('.item.on'),function(e){e.classList.remove('on');});
+        b.classList.add('on');
+        yt.src='https://www.youtube-nocookie.com/embed/'+x.id+'?list='+LIST+'&index='+(i+1)+'&autoplay=1&rel=0&loop=1&hl=de';
+        yt.scrollIntoView({behavior:'smooth',block:'center'});
+      });
+      li.appendChild(b); ol.appendChild(li);
+    });
+    box.hidden=false;
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
